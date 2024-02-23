@@ -8,6 +8,7 @@ import { GlobalStyles } from "./constants/styles";
 import ManageExpense from "./screens/ManageExpense";
 import AllExpenses from "./screens/AllExpenses";
 import RecentExpenses from "./screens/RecentExpenses";
+import IconButton from "./components/UI/IconButton";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -21,6 +22,9 @@ export default function App() {
           headerTintColor: "white",
           tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
           tabBarActiveTintColor: GlobalStyles.colors.accent500,
+          headerRight: ({ tintColor }) => (
+            <IconButton icon="add" size={24} color={tintColor} />
+          ),
         }}
       >
         <BottomTabs.Screen

@@ -4,8 +4,13 @@ import { GlobalStyles } from "../../constants/styles";
 const { Pressable, View, Text, StyleSheet } = require("react-native");
 
 const ExpenseItem = ({ description, amount, date }) => {
+  const expensePressHandler = () => {};
   return (
-    <Pressable>
+    <Pressable
+      onPress={expensePressHandler}
+      style={({ pressed }) => pressed && styles.pressed}
+      android_ripple
+    >
       <View style={styles.expenseItem}>
         <View>
           <Text style={[styles.textBase, styles.description]}>
@@ -56,5 +61,8 @@ const styles = StyleSheet.create({
   },
   amount: {
     color: GlobalStyles.colors.primary500,
+  },
+  pressed: {
+    opacity: 0.75,
   },
 });
