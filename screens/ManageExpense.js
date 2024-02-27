@@ -9,6 +9,7 @@ import Button from "../components/UI/Button";
 const ManageExpense = ({ route, navigation }) => {
   const expenseCtx = useContext(ExpenseContext);
   const editedExpenseId = route.params?.expenseId;
+  // console.log(editedExpenseId);
   const isEditing = !!editedExpenseId;
 
   useLayoutEffect(() => {
@@ -25,17 +26,27 @@ const ManageExpense = ({ route, navigation }) => {
     navigation.goBack();
   };
   const confirmHandler = () => {
-    isEditing
-      ? expenseCtx.updateExpense(editedExpenseId, {
-          description: "pencil",
-          amount: 11.99,
-          date: new Date("2023-05-04"),
-        })
-      : expenseCtx.addExpense({
-          description: "pen",
-          amount: 21.99,
-          date: new Date("2023-05-30"),
-        });
+    if (isEditing) {
+      // console.log(
+      //   "update",
+      //   expenseCtx.updateExpense(editedExpenseId, {
+      //     description: "pencil",
+      //     amount: 11.99,
+      //     date: new Date("2024-02-26"),
+      //   })
+      // );
+      expenseCtx.updateExpense(editedExpenseId, {
+        description: "pencil",
+        amount: 11.99,
+        date: new Date("2024-02-26"),
+      });
+    } else {
+      expenseCtx.addExpense({
+        description: "pen",
+        amount: 21.99,
+        date: new Date("2024-02-27"),
+      });
+    }
     navigation.goBack();
   };
 
