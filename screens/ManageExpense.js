@@ -27,24 +27,16 @@ const ManageExpense = ({ route, navigation }) => {
   };
   const confirmHandler = () => {
     if (isEditing) {
-      // console.log(
-      //   "update",
-      //   expenseCtx.updateExpense(editedExpenseId, {
-      //     description: "pencil",
-      //     amount: 11.99,
-      //     date: new Date("2024-02-26"),
-      //   })
-      // );
       expenseCtx.updateExpense(editedExpenseId, {
         description: "pencil",
         amount: 11.99,
-        date: new Date("2024-02-26"),
+        date: new Date("2024-03-7"),
       });
     } else {
       expenseCtx.addExpense({
         description: "pen",
         amount: 21.99,
-        date: new Date("2024-02-27"),
+        date: new Date("2024-03-7"),
       });
     }
     navigation.goBack();
