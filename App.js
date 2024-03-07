@@ -9,7 +9,8 @@ import ManageExpense from "./screens/ManageExpense";
 import AllExpenses from "./screens/AllExpenses";
 import RecentExpenses from "./screens/RecentExpenses";
 import IconButton from "./components/UI/IconButton";
-import { ExpenseContextProvider } from "./store/expense-context";
+import ExpenseContextProvider from "./store/expense-context";
+// import { ExpenseContextProvider } from "./store/expense-context";
 // import { Modal } from "react-native";
 
 export default function App() {
@@ -87,7 +88,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </ExpenseContextProvider>
+      </ExpenseContextProvider >
     </>
   );
 }
