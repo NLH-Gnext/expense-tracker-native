@@ -5,6 +5,7 @@ import { ExpenseContext } from "../store/expense-context";
 
 import IconButton from "../components/UI/IconButton";
 import Button from "../components/UI/Button";
+import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 
 const ManageExpense = ({ route, navigation }) => {
   const expenseCtx = useContext(ExpenseContext);
@@ -28,7 +29,7 @@ const ManageExpense = ({ route, navigation }) => {
   const confirmHandler = () => {
     if (isEditing) {
       expenseCtx.updateExpense(editedExpenseId, {
-        description: "pencil",
+        description: "p encil",
         amount: 11.99,
         date: new Date("2024-03-7"),
       });
@@ -44,6 +45,7 @@ const ManageExpense = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <ExpenseForm/>
       <View style={styles.buttons}>
         <Button style={styles.button} mode="flat" onPress={cancelHandler}>
           Cancel
