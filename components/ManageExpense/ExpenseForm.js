@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 
 import Input from "./Input";
 import Button from "../UI/Button";
+import { getFormattedDate } from "../../util/date";
 
 const ExpenseForm = ({
   defaultValues,
@@ -12,8 +13,9 @@ const ExpenseForm = ({
 }) => {
   const [inputValue, setInputValue] = useState({
     amount: defaultValues ? defaultValues.amount.toString() : "",
-    date: defaultValues ? defaultValues.date.toISOString() : "",
+    date: defaultValues ? getFormattedDate(defaultValues.date) : "",
     description: defaultValues ? defaultValues.description : "",
+    // date: defaultValues ? defaultValues.date.toISOString().slice(0,10) : "",
   });
 
   const inputChangeHandler = (inputIdentifier, enteredValue) => {
@@ -26,13 +28,22 @@ const ExpenseForm = ({
   };
 
   const submitHandler = () => {
-    const expenseDate = {
+    const expenseData = {
       amount: +inputValue.amount,
       date: new Date(inputValue.date),
       description: inputValue.description,
     };
 
-    onSubmit(expenseDate);
+    const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
+    const dateIsValid = expenseData.date.toString() !== "Invalid Date";
+    const descriptionIsValid = expenseData.description.trim().length > 0;
+
+    if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
+      Alert.alert("Invalid value", "Please check your input values");
+      return;
+    }
+
+    onSubmit(expenseData);
   };
   return (
     <View style={styles.form}>
