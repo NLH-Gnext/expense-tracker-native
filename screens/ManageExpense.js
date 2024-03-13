@@ -24,19 +24,21 @@ const ManageExpense = ({ route, navigation }) => {
   const cancelHandler = () => {
     navigation.goBack();
   };
-  const confirmHandler = () => {
+  const confirmHandler = (expenseData) => {
     if (isEditing) {
-      expenseCtx.updateExpense(editedExpenseId, {
-        description: "p encil",
-        amount: 11.99,
-        date: new Date("2024-03-7"),
-      });
+      expenseCtx.updateExpense(editedExpenseId, expenseData);
+      // expenseCtx.updateExpense(editedExpenseId, {
+      //   description: "p encil",
+      //   amount: 11.99,
+      //   date: new Date("2024-03-7"),
+      // });
     } else {
-      expenseCtx.addExpense({
-        description: "pen",
-        amount: 21.99,
-        date: new Date("2024-03-7"),
-      });
+      expenseCtx.addExpense(expenseData);
+      // expenseCtx.addExpense({
+      //   description: "pen",
+      //   amount: 21.99,
+      //   date: new Date("2024-03-7"),
+      // });
     }
     navigation.goBack();
   };

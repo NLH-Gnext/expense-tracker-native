@@ -10,6 +10,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSubmit }) => {
     date: "",
     description: "",
   });
+
   const inputChangeHandler = (inputIdentifier, enteredValue) => {
     setInputValue((currInputValue) => {
       return {
@@ -17,6 +18,16 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSubmit }) => {
         [inputIdentifier]: enteredValue,
       };
     });
+  };
+
+  const submitHandler = () => {
+    const expenseDate = {
+      amount: +inputValue.amount,
+      date: new Date(inputValue.date),
+      description: inputValue.description,
+    };
+
+    onSubmit(expenseDate);
   };
   return (
     <View style={styles.form}>
@@ -58,7 +69,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSubmit }) => {
         <Button style={styles.button} mode="flat" onPress={onCancel}>
           Cancel
         </Button>
-        <Button style={styles.button} onPress={onSubmit}>
+        <Button style={styles.button} onPress={submitHandler}>
           {submitButtonLabel}
         </Button>
       </View>
