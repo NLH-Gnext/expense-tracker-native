@@ -59,7 +59,7 @@ const ExpenseForm = ({
         };
       });
       // Alert.alert("Invalid value", "Please check your input values");
-      // return;
+      return;
     }
 
     onSubmit(expenseData);
