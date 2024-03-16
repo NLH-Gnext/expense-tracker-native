@@ -4,6 +4,7 @@ import { Alert, StyleSheet, Text, View } from "react-native";
 import Input from "./Input";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
+import { GlobalStyles } from "../../constants/styles";
 
 const ExpenseForm = ({
   defaultValues,
@@ -77,6 +78,7 @@ const ExpenseForm = ({
         <Input
           label="Amount"
           style={styles.rowsInput}
+          invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangeHandler.bind(this, "amount"),
@@ -86,6 +88,7 @@ const ExpenseForm = ({
         <Input
           label="Date"
           style={styles.rowsInput}
+          invalid={!inputs.date.isValid}
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
@@ -97,6 +100,7 @@ const ExpenseForm = ({
 
       <Input
         label="Description"
+        invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
           onChangeText: inputChangeHandler.bind(this, "description"),
@@ -107,7 +111,9 @@ const ExpenseForm = ({
       />
 
       {formIsInvalid && (
-        <Text>Invalid Input Values - Please check your entered data!</Text>
+        <Text style={styles.invalidText}>
+          Invalid Input Values - Please check your entered data!
+        </Text>
       )}
 
       <View style={styles.buttons}>
@@ -150,5 +156,10 @@ const styles = StyleSheet.create({
   button: {
     minWidth: 120,
     marginHorizontal: 8,
+  },
+  invalidText: {
+    textAlign: "center",
+    color: GlobalStyles.colors.error500,
+    marginBottom: 8,
   },
 });
