@@ -13,7 +13,6 @@ export const fetchExpense = async () => {
   const response = await axios.get(BaseUrl + "/expenses.json");
   const expenses = [];
 
-  console.log(response.data);
   for (const key in response.data) {
     const expenseObj = {
       id: key,
@@ -24,4 +23,12 @@ export const fetchExpense = async () => {
     expenses.push(expenseObj);
   }
   return expenses;
+};
+
+export const updateExpense = (id, expenseData) => {
+  return axios.put(BaseUrl + `/expenses/${id}.json`, expenseData);
+};
+
+export const deleteExpense = (id) => {
+  return axios.delete(BaseUrl + `/expenses/${id}.json`);
 };
