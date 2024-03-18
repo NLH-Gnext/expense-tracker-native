@@ -3,8 +3,10 @@ import axios from "axios";
 const BaseUrl =
   "https://expense-tracker-native-5f1dc-default-rtdb.asia-southeast1.firebasedatabase.app";
 
-export const storeExpense = (expenseData) => {
-  axios.post(BaseUrl + "/expenses.json", expenseData);
+export const storeExpense = async (expenseData) => {
+  const response = await axios.post(BaseUrl + "/expenses.json", expenseData);
+  const id = response.data.name;
+  return id;
 };
 
 export const fetchExpense = async () => {
